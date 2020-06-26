@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}My_quizz home{% endblock %}
+
+{% block body %}
+
+
+<div class="col-8">
+<br><br><h1 style="text-align: center">Quizz "{{ categories.name }} "</h1><br><br><br><br>
+    <div class="card" style="width: 38rem;">
+        <div class="card-header text-center">
+            <br><h3>Fin du quizz</h3><br>
+            <br><h3>Votre score est de </h3><br>
+            <h3>{{ scores }} / 10</h3>
+            <br><a href="/"><button class="btn btn-secondary">Retour</button></a>
+        </div>
+    </div>
+</div>
+{% endblock %}

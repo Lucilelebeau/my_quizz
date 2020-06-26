@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Question{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; font: 20px/1.5 sans-serif; }
+</style>
+
+<div class="col-9">
+    <div class="example-wrapper">
+        <br><h1 style="text-align: center">Quizz "{{ categories.name }} "</h1><br><br>
+        <div class="card">
+            <div class="card-header">
+                <br><h4>{{ questions.question }}</h4><br>
+            </div>
+
+            <div class="card-body">
+                <form action="" name="{{ questions.id }}">
+                    {% for reponse in reponses %}
+                        {% if questions.id == reponse.id_question %}
+                            <input type="radio" id="{{ reponse.id }}" name="reponse" value="{{ reponse.reponse_expected }}">
+                            <label for="{{ reponse.id }}">{{ reponse.reponse }}</label><br>
+                        {% endif %}
+                    {% endfor %}
+                    <br><input type="submit" class="btn btn-secondary" value="Valider">
+                </form>
+            </div>
+
+            <div class="card-footer text-center">
+            {% if nextQuest > last %}
+            
+                {% if expected.reponse_expected == validate %}
+                    <div class="alert alert-success" role="alert">
+                       Bonne réponse !
+                    </div>
+                    <a href="/categorie/{{ cat }}/{{ score }}"><button class="btn btn-primary">Résultat</button></a>
+                {% elseif validate == null %}
+                {% else %}
+                    <br><div class="alert alert-danger" role="alert">
+                        Faux, la réponse est : {{ expected.reponse }}
+                    </div><br>
+                    <a href="/categorie/{{ cat }}/{{ score }}"><button class="btn btn-primary">Résultat</button></a><br>
+                {% endif %}
+            {% else %}
+                {% if expected.reponse_expected == validate %}
+                    <div class="alert alert-success" role="alert">
+                        Bonne réponse !
+                    </div>
+                    <a href="/categorie/{{ cat }}/{{ nextQuest }}/{{ score }}"><button class="btn btn-primary">Question suivante</button></a>
+                    <p>score : {{ score }}</p>
+                {% elseif validate == null %}
+                {% else %}
+                    <br><div class="alert alert-danger" role="alert">
+                        Faux, la réponse est : {{ expected.reponse }}
+                    </div><br>
+                    <a href="/categorie/{{ cat }}/{{ nextQuest }}/{{ score }}"><button>Question suivante</button></a><br>
+                    <p>score : {{ score }}</p>
+                {% endif %}
+            {% endif %}
+                
+            </div>
+            
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}My_quizz home{% endblock %}
+
+{% block body %}
+
+<style>
+    .titre { text-align: center; }
+</style>
+
+<div class="titre">
+    <br><h1>Admin / Gestion des membres</h1><br>
+    <i><h3>{{ app.user.name }}</h3></i><br><br>
+</div>
+
+<table class="table table-bordered">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Nom</th>
+      <th scope="col">Adresse email</th>
+      <th scope="col">Role</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+  {% for all_users in all_user %}
+    <tr>
+      <th scope="row">{{ all_users.id }}</th>
+      <td>{{ all_users.name }}</td>
+      <td>{{ all_users.email }}</td>
+      <td>{{ all_users.roles[0] }}</td>
+      <td><a href="/admin_user/{{ all_users.id }}/delete"><button type="button" class="btn btn-dark btn-sm">X</button></a>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}

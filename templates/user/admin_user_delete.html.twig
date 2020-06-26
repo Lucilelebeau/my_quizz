@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}My_quizz home{% endblock %}
+
+{% block body %}
+
+<style>
+    .titre { text-align: center; display: block;}
+</style>
+
+<div class="titre">
+    <br><h1>Admin / Gestion des membres</h1><br>
+    <i><h3>{{ app.user.name }}</h3></i><br><br>
+</div>
+<div class="card" style="width: 38rem;">
+  <div class="card-header text-center">
+    <div>
+        <br><br><h4>Membre supprimer</h4><br>
+        <a href="/admin_user"><button type="button" class="btn btn-secondary">Retour</button></a>
+    </div>
+ </div>
+</div>
+
+
+{% endblock %}

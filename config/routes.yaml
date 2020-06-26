@@ -1,0 +1,11 @@
+#index:
+#    path: /
+#    controller: App\Controller\HomePageController::index
+
+#index:
+#    path: /categorie/{id}/{id_question}/{score}
+#    controller: App\Controller\HomePageController::index
+
+#resultat:
+#    path: /categorie/{id}/resultat/{score}
+#    controller: App\Controller\HomePageController::getScore

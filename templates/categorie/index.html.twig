@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}My_quizz home{% endblock %}
+
+{% block body %}
+<style>
+    .titre { text-align: center; }
+    a { list-style: none; color: black; font-size: 20px; padding: 35px;}
+</style>
+
+<div class="titre">
+    <br><h1>Bienvenue sur My Quizz</h1><br>
+    {% if app.user %}
+    <i><h3>{{ app.user.name }}</h3></i>
+    {% endif %}
+    {% if is_granted('ROLE_ADMIN') %}
+    <h3>Admin</h3><br>
+    {% endif %}
+    <br><h4>Le meilleur site pour passer le temps pendant le confinement !</h4><br><br><br>
+</div>
+<div class="card" style="width: 38rem;">
+  <div class="card-header text-center">
+    <br><h3>Choisis ton Quizz :</h3><br>
+</div>
+    
+    <ul class="list-group list-group-flush">
+        {% for categorie in categories %}
+            <li class="list-group-item"><a href="/categorie/{{ categorie.id }}/start/0"/>
+            {{ categorie.id }}. <b>{{ categorie.name }}</b>
+            {% if app.user %}
+                {% for scoredata in scoreData %}
+                    {% if categorie.id == scoredata.id_categorie %}
+                        <i> -> {{ scoredata.score }} / 10</i>
+                    {% endif %}
+                {% endfor %}
+            {% else %}
+                {% if categorie.id == id_cat %}
+                    -> {{ score }} / 10
+                {% endif %}
+            {% endif %}
+            </a></li>
+        {% endfor %}
+
+        <li class="list-group-item text-center">
+            {% if app.user == null %}
+                <a href="/login" class="btn btn-info">
+                    Connecte-toi pour créer un quizz >></a>
+            {% else %}
+                <a href="{{ path('home') }}" class="btn btn-info">
+                    Créer un quizz >></a>
+            {% endif %}
+        </li>
+    </ul>
+</div>
+{% endblock %}
