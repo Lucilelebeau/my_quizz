@@ -1,5 +1,6 @@
 # My_quizz
  création d'un site de quizz avec le framework Symfony v.4.14.4
+ L'accent est donné plus sur les fonctionnalités et la découverte de Symfony que sur l'apparence visuel du site.
  restriction : sans utiliser Javascript
  
 *réalisé dans le cadre de la formation Web@cadémie by Epitech Marseille*
